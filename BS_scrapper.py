@@ -208,7 +208,7 @@ def run_on_browserstack(caps, index):
             options.set_capability(key, value)
 
         driver = webdriver.Remote(command_executor=BS_URL, options=options)
-        articles = scrape_elpais(driver, thread_name=thread_name)
+        articles = scrape_elpais(driver, thread_name=thread_name, print_preview=True)
 
         # Mark session as passed
         driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status": "passed", "reason": "Scraped 5 articles successfully"}}')
@@ -254,4 +254,5 @@ if __name__ == "__main__":
         t.join()
 
     print("\nAll BrowserStack sessions complete!")
+
     print("View results at: https://automate.browserstack.com/dashboard")
